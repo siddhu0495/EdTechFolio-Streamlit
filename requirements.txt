@@ -2,3 +2,9 @@ streamlit
 openai
 # google-generativeai
 google-genai
+ollama
+fpdf
+python-docx
+python-pptx
+pandas
+openpyxl
