@@ -8,3 +8,8 @@ python-docx
 python-pptx
 pandas
 openpyxl
+requests
+beautifulsoup4
+youtube-transcript-api>=0.6.0
+googlesearch-python
+anthropic
