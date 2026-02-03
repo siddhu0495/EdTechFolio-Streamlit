@@ -6,6 +6,10 @@ import pandas as pd
 import json
 import os
 import hashlib
+import requests
+from bs4 import BeautifulSoup
+from youtube_transcript_api import YouTubeTranscriptApi
+from googlesearch import search
 # import google.generativeai as genai
 from google import genai
 from google.genai import types
@@ -23,7 +27,9 @@ def get_llm_response(tool_name, inputs):
     """
     provider = st.session_state.get('api_provider', 'Mock')
     api_key = st.session_state.get('api_key', '')
-    ollama_model = st.session_state.get('ollama_model', 'llama3.2')
+    ollama_model = st.session_state.get('ollama_model', 'gpt-oss')
+    ollama_base_url = st.session_state.get('ollama_base_url', '')
+    truncation_msg = ""
 
     # 1. Construct the Prompt based on the tool
     prompt = ""
@@ -53,6 +59,25 @@ def get_llm_response(tool_name, inputs):
         prompt = f"Create a {inputs.get('exam_type')} question paper for '{inputs.get('topic')}' with {inputs.get('num_questions')} questions."
     elif tool_name == "Paper Correction":
         prompt = f"Provide a correction summary for the answer sheet file named '{inputs.get('file_name')}'. (Note: Real file analysis requires OCR integration)."
+    elif tool_name == "YouTube or URL Summary":
+        action = inputs.get('action')
+        content = inputs.get('content')
+        url = inputs.get('url')
+        if len(content) > 25000:
+            truncation_msg = f"\n\n⚠️ **Note:** The text is truncated and complete info is not displayed. Reference: {url}"
+            content = content[:25000]
+        
+        if action == "Complete Text":
+            return content + truncation_msg
+        elif action == "Translation":
+            prompt = f"Translate the following content into English. Provide key insights if applicable.\n\nContent: {content}"
+        elif "Summary" in action:
+            words_instruction = f" in approximately {action.split('(')[1].split(' ')[0]} words" if "(" in action else ""
+            prompt = f"Summarize the following content{words_instruction}. Provide key insights.\n\nContent: {content}"
+    elif tool_name == "Google Search Info":
+        prompt = f"Synthesize the following search results for the topic '{inputs.get('topic')}'. Use the 'Content Snippet' if available; otherwise, rely on the 'Description'. You MUST cite the URLs for every claim. If you cannot find specific details, list the URLs as resources.\n\nSearch Data:\n{inputs.get('search_results')}"
+    elif tool_name == "Google News":
+        prompt = f"Summarize the key news stories regarding '{inputs.get('topic')}' based on the following headlines. Highlight the most important events.\n\nNews Data:\n{inputs.get('news_results')}"
 
     # 2. Handle Real API Calls
     if provider != "Mock":
@@ -66,17 +91,25 @@ def get_llm_response(tool_name, inputs):
                     model="gpt-3.5-turbo",
                     messages=[{"role": "user", "content": prompt}]
                 )
-                return response.choices[0].message.content
+                response_text = response.choices[0].message.content
             elif provider == "Gemini":
                 client = genai.Client(api_key=api_key)
                 response = client.models.generate_content(
                     model='gemini-2.0-flash', contents=prompt
                 )
-                return response.text
+                response_text = response.text
             elif provider == "Ollama":
-                # Ensure Ollama is running locally (default port 11434)
-                response = ollama.chat(model=ollama_model, messages=[{'role': 'user', 'content': prompt}])
-                return response['message']['content']
+                # Ensure Ollama is running locally (default port 11434) or via ngrok
+                if ollama_base_url:
+                    client = ollama.Client(host=ollama_base_url, headers={'ngrok-skip-browser-warning': 'true'})
+                    response = client.chat(model=ollama_model, messages=[{'role': 'user', 'content': prompt}])
+                else:
+                    response = ollama.chat(model=ollama_model, messages=[{'role': 'user', 'content': prompt}])
+                response_text = response['message']['content']
+            
+            if tool_name == "YouTube or URL Summary" and truncation_msg:
+                return response_text + truncation_msg
+            return response_text
         except Exception as e:
             if provider == "Ollama" and "404" in str(e):
                 return f"⚠️ Model '{ollama_model}' not found locally. Please run `ollama pull {ollama_model}` in your terminal."
@@ -109,8 +142,114 @@ def get_llm_response(tool_name, inputs):
         return f"**{inputs.get('exam_type')} Exam - {inputs.get('topic')}**\n\n**Total Questions: {inputs.get('num_questions')}**\n\n1.  Discuss the primary causes of {inputs.get('topic')}.\n2.  Define the term 'Blitzkrieg'."
     elif tool_name == "Paper Correction":
         return "**Correction Summary:**\n- Question 1: Correct\n- Question 2: Partially incorrect. Key detail missed.\n\n**Marks: 8/10**"
+    elif tool_name == "YouTube or URL Summary":
+        return f"**{inputs.get('action')} Output:**\n\nThis is a simulated output for the content from {inputs.get('url')}."
+    elif tool_name == "Google Search Info":
+        return f"**Latest Info on {inputs.get('topic')}:**\n\n(Mock Summary) The search results indicate significant interest in {inputs.get('topic')}. Key developments include..."
+    elif tool_name == "Google News":
+        return f"**News Update for {inputs.get('topic')}:**\n\n(Mock News) Several outlets are reporting on {inputs.get('topic')}. Major headlines involve..."
     
     return "Output generated."
+
+# --- SCRAPING UTILS ---
+def get_video_id(url):
+    """Extracts video ID from YouTube URL."""
+    if "youtu.be" in url:
+        return url.split("/")[-1].split("?")[0]
+    if "v=" in url:
+        return url.split("v=")[1].split("&")[0]
+    return None
+
+def fetch_url_content(url):
+    """Fetches text content from a URL (YouTube transcript or Webpage text)."""
+    try:
+        if "youtube.com" in url or "youtu.be" in url:
+            video_id = get_video_id(url)
+            # print(video_id,'video_id')
+            if not video_id: return "Error: Invalid YouTube URL."
+            try:
+                # transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+                # transcriptYouTube = YouTubeTranscriptApi()
+                # transcript_list = transcriptYouTube.fetch(video_id)
+                transcript_list = YouTubeTranscriptApi().fetch(video_id)   # This will fetch the transcript for the video
+                # transcript_list = YouTubeTranscriptApi().list(video_id)    # This will list all the available languages (transcripts) for the video
+       
+            except AttributeError:
+                return "Error: Library conflict detected. Please ensure you do not have a file named 'youtube_transcript_api.py' in your project folder."
+            # print('transcript_list start',transcript_list,'transcript_list end')
+            transcript_text = " ".join([t.text for t in transcript_list])
+            # print('transcript_text start',transcript_text,'transcript_text end')
+            return transcript_text
+        else:
+            headers = {
+                'User-Agent': 'Mozilla/5.0',
+                'ngrok-skip-browser-warning': 'true'
+            }
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code != 200: return f"Error: Unable to fetch URL (Status: {response.status_code})"
+            soup = BeautifulSoup(response.text, 'html.parser')
+            for script in soup(["script", "style"]): script.extract()
+            return soup.get_text(separator=' ', strip=True)
+    except Exception as e:
+        return f"Error reading content: {str(e)}"
+
+def fetch_google_search(query):
+    """Fetches Google Search results."""
+    try:
+        # Try advanced search first (returns objects with title/desc)
+        try:
+            results = list(search(query, num_results=10, advanced=True))
+        except:
+            results = []
+
+        # Fallback to basic search if advanced fails or returns empty
+        if not results:
+            try:
+                # basic search returns strings (URLs)
+                urls = list(search(query, num_results=10))
+                # Create mock objects for consistency
+                class MockResult:
+                    def __init__(self, url):
+                        self.url = url
+                        self.title = "Title unavailable"
+                        self.description = "Description unavailable"
+                results = [MockResult(u) for u in urls]
+            except:
+                return "No search results found."
+
+        output = []
+        for i, r in enumerate(results):
+            # Attempt to scrape the content of the page
+            scraped_content = fetch_url_content(r.url)
+            # Truncate scraped content to avoid context window overflow (approx 1000 chars per source)
+            if "Error" in scraped_content:
+                # If scraping fails, just note it so LLM knows to use description
+                scraped_content = "(Content could not be scraped. Use description.)"
+            else:
+                scraped_content = scraped_content[:1000].replace("\n", " ") + "..."
+            
+            output.append(f"Source {i+1}:\nTitle: {r.title}\nURL: {r.url}\nDescription: {r.description}\nContent Snippet: {scraped_content}\n")
+            
+        return "\n".join(output)
+    except Exception as e:
+        return f"Error fetching search results: {str(e)}"
+
+def fetch_google_news(query):
+    """Fetches Google News RSS feed."""
+    try:
+        url = f"https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en"
+        response = requests.get(url, timeout=5)
+        # Use html.parser to handle XML tags in a forgiving way
+        soup = BeautifulSoup(response.content, 'html.parser')
+        items = soup.find_all('item', limit=5)
+        output = []
+        for item in items:
+            title = item.title.text if item.title else "No Title"
+            pub = item.pubdate.text if item.find('pubdate') else ""
+            output.append(f"Headline: {title}\nDate: {pub}")
+        return "\n\n".join(output)
+    except Exception as e:
+        return f"Error fetching news: {str(e)}"
 
 # --- FILE GENERATION UTILS ---
 def generate_file_content(content, file_format):
@@ -276,30 +415,34 @@ if not st.session_state.logged_in:
 else:
     # --- SIDEBAR ---
     with st.sidebar:
-        st.write(f"👤 **{st.session_state.username}**")
-        if st.button("Logout", key="logout_btn"):
-            st.session_state.logged_in = False
-            st.session_state.username = ""
-            st.session_state.history = []
-            st.rerun()
-        st.divider()
         st.title("EdTech Hub")
+        st.write(f"👤 **{st.session_state.username}**")
+        st.divider()
         
         def reset_tool_state():
             st.session_state.current_tool = None
             st.session_state.last_tool_output = None
 
-        nav_option = st.radio("Navigation", ["Home", "Magic Tools", "Output History"], on_change=reset_tool_state)
+        nav_option = st.radio("Navigation", ["Home", "Magic Tools", "Chat History"], on_change=reset_tool_state, key="nav_selection")
 
         st.divider()
         st.subheader("⚙️ Settings")
-        st.session_state.api_provider = st.selectbox("Select Model Provider", ["Mock", "Ollama"], key="api_provider_select")
+        st.session_state.api_provider = st.selectbox("Select Model Provider", ["Ollama"], key="api_provider_select")
         
         if st.session_state.api_provider == "Ollama":
             # Add more models to this list as needed
-            st.session_state.ollama_model = st.selectbox("Select Ollama Model", ["deepseek-r1", "llama3.2", "gpt-oss", "qwen3", "qwen3-vl", "mistral", "phi", "gemma3", "translategemma"], key="ollama_model_select")
+            st.session_state.ollama_model = st.selectbox("Select Ollama Model", ["gpt-oss", "deepseek-r1", "llama3.2", "qwen", "qwen-vl", "mistral", "phi", "gemma", "gemma3", "translategemma"], key="ollama_model_select")
+            st.session_state.ollama_base_url = st.text_input("Ollama Base URL (for remote/ngrok)", value=st.session_state.get('ollama_base_url', ''), placeholder="https://your-ngrok-url.ngrok-free.app", key="ollama_url_input")
+            st.caption("Required if deploying on Streamlit Cloud to connect to local Ollama.")
         elif st.session_state.api_provider != "Mock":
             st.session_state.api_key = st.text_input(f"Enter {st.session_state.api_provider} API Key", type="password", key="api_key_input")
+            
+        st.divider()
+        if st.button("Logout", key="logout_btn"):
+            st.session_state.logged_in = False
+            st.session_state.username = ""
+            st.session_state.history = []
+            st.rerun()
 
     # --- MAIN PANEL ---
 
@@ -314,11 +457,17 @@ else:
         - 🍎 **Lesson Planning**
         - And much more!
         
-        Check **Output History** to view your saved generations.
+        Check **Chat History** to view your saved generations.
         """)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.button("✨ Go to Magic Tools", use_container_width=True, on_click=lambda: (st.session_state.update(nav_selection="Magic Tools"), reset_tool_state()))
+        with col2:
+            st.button("📜 View Chat History", use_container_width=True, on_click=lambda: (st.session_state.update(nav_selection="Chat History"), reset_tool_state()))
 
-    elif nav_option == "Output History":
-        st.title("📜 Output History")
+    elif nav_option == "Chat History":
+        st.title("📜 Chat History")
         if not st.session_state.history:
             st.info("No history available yet. Use the Magic Tools to generate content!")
         else:
@@ -534,6 +683,64 @@ else:
                     else:
                         st.warning("Please upload an answer sheet.")
 
+            # --- TOOL: YouTube or URL Summary ---
+            elif tool == "YouTube or URL Summary":
+                st.title("🔗 YouTube or URL Summary")
+                st.write("Read or scrape a website/video and provide a summary with insights.")
+                url = st.text_input("Enter YouTube Link or Website URL", placeholder="https://...")
+                action_type = st.selectbox("Choose Action", ["Summary (100 words)", "Summary (500 words)", "Summary (1000 words)", "General Summary", "Complete Text", "Translation"])
+                
+                if st.button("Generate", key="url_sum_gen"):
+                    if url:
+                        with st.spinner("Processing content..."):
+                            content_text = fetch_url_content(url)
+                            if "Error" in content_text:
+                                st.error(content_text)
+                            else:
+                                output = get_llm_response(tool, {"content": content_text, "action": action_type, "url": url})
+                                st.session_state.last_tool_output = {'tool': tool, 'content': output}
+                                add_history_entry("YouTube or URL Summary", {"url": url, "action": action_type}, output)
+                    else:
+                        st.warning("Please enter a URL.")
+
+            # --- TOOL: Google Search Info ---
+            elif tool == "Google Search Info":
+                st.title("🔍 Google Search Info")
+                st.write("Pull the latest information from Google on any topic.")
+                topic = st.text_input("Enter Topic", placeholder="e.g., Latest advancements in AI")
+                
+                if st.button("Fetch Info", key="gs_info_gen"):
+                    if topic:
+                        with st.spinner("Searching Google..."):
+                            search_results = fetch_google_search(topic)
+                            if "Error" in search_results:
+                                st.error(search_results)
+                            else:
+                                output = get_llm_response(tool, {"topic": topic, "search_results": search_results})
+                                st.session_state.last_tool_output = {'tool': tool, 'content': output}
+                                add_history_entry("Google Search Info", {"topic": topic}, output)
+                    else:
+                        st.warning("Please enter a topic.")
+
+            # --- TOOL: Google News ---
+            elif tool == "Google News":
+                st.title("📰 Google News")
+                st.write("Get the latest news headlines and summaries from Google News.")
+                topic = st.text_input("Enter News Topic", placeholder="e.g., Space Exploration")
+                
+                if st.button("Fetch News", key="gs_news_gen"):
+                    if topic:
+                        with st.spinner("Fetching News..."):
+                            news_results = fetch_google_news(topic)
+                            if "Error" in news_results:
+                                st.error(news_results)
+                            else:
+                                output = get_llm_response(tool, {"topic": topic, "news_results": news_results})
+                                st.session_state.last_tool_output = {'tool': tool, 'content': output}
+                                add_history_entry("Google News", {"topic": topic}, output)
+                    else:
+                        st.warning("Please enter a topic.")
+
             # --- CONSOLIDATED OUTPUT DISPLAY ---
             if st.session_state.get('last_tool_output') and st.session_state['last_tool_output']['tool'] == tool:
                 st.success("Content Generated!")
@@ -542,7 +749,8 @@ else:
                 # Determine rendering method based on tool type
                 markdown_tools = [
                     "Worksheet Generator", "Lesson Plan", "Essay Grader", 
-                    "PPT Generator", "Question Paper Creation", "Paper Correction"
+                    "PPT Generator", "Question Paper Creation", "Paper Correction",
+                    "YouTube or URL Summary", "Google Search Info", "Google News"
                 ]
                 if tool in markdown_tools:
                     st.markdown(content)
@@ -589,7 +797,10 @@ else:
                 {"name": "Essay Grader", "icon": "🎓", "desc": "Grade an essay based on a rubric or criteria."},
                 {"name": "PPT Generator", "icon": "🖼️", "desc": "Generate a presentation outline based on a topic."},
                 {"name": "Question Paper Creation", "icon": "📜", "desc": "Create a question paper for any topic and exam-type."},
-                {"name": "Paper Correction", "icon": "✅", "desc": "Generate a correction and marks based on an answer sheet."}
+                {"name": "Paper Correction", "icon": "✅", "desc": "Generate a correction and marks based on an answer sheet."},
+                {"name": "YouTube or URL Summary", "icon": "🔗", "desc": "Summarize a YouTube video or Website URL with insights."},
+                {"name": "Google Search Info", "icon": "🔍", "desc": "Pull latest information from Google on any topic."},
+                {"name": "Google News", "icon": "📰", "desc": "Get latest news headlines from Google News."}
             ]
             
             # Grid Layout: Iterate in chunks of 3 to ensure proper alignment
