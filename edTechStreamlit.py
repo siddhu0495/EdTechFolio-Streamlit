@@ -28,7 +28,14 @@ def get_llm_response(tool_name, inputs):
     provider = st.session_state.get('api_provider', 'Mock')
     api_key = st.session_state.get('api_key', '')
     ollama_model = st.session_state.get('ollama_model', 'gpt-oss')
-    ollama_base_url = st.session_state.get('ollama_base_url', '')
+    
+    ollama_base_url = ""
+    try:
+        # Read from Streamlit secrets if available
+        if "ollama_base_url" in st.secrets:
+            ollama_base_url = st.secrets["ollama_base_url"]
+    except Exception:
+        pass # Fails gracefully if secrets file doesn't exist or key is missing
     truncation_msg = ""
 
     # 1. Construct the Prompt based on the tool
@@ -432,8 +439,35 @@ else:
         if st.session_state.api_provider == "Ollama":
             # Add more models to this list as needed
             st.session_state.ollama_model = st.selectbox("Select Ollama Model", ["gpt-oss", "deepseek-r1", "llama3.2", "qwen", "qwen-vl", "mistral", "phi", "gemma", "gemma3", "translategemma"], key="ollama_model_select")
-            st.session_state.ollama_base_url = st.text_input("Ollama Base URL (for remote/ngrok)", value=st.session_state.get('ollama_base_url', ''), placeholder="https://your-ngrok-url.ngrok-free.app", key="ollama_url_input")
-            st.caption("Required if deploying on Streamlit Cloud to connect to local Ollama.")
+            
+            ### This code is commented. Can be removed later - Start
+            # # Initialize default URL from secrets if available, but allow UI override
+            # default_ollama_url = ""
+            # try:
+            #     default_ollama_url = st.secrets.get("ollama_base_url", "")
+            # except:
+            #     pass
+            
+            # if "ollama_base_url" not in st.session_state:
+            #     st.session_state.ollama_base_url = default_ollama_url
+                
+            # st.text_input("Ollama Base URL (for remote/ngrok)", key="ollama_base_url", placeholder="https://your-ngrok-url.ngrok-free.app")
+            # st.caption("Leave empty for localhost. Required if deploying on Streamlit Cloud.")
+            
+            # if st.session_state.ollama_base_url:
+            #     if st.button("Test Connection", key="test_ollama_conn"):
+            #         try:
+            #             # Ollama root endpoint usually returns "Ollama is running"
+            #             test_url = st.session_state.ollama_base_url.rstrip('/')
+            #             response = requests.get(test_url, headers={'ngrok-skip-browser-warning': 'true'}, timeout=5)
+            #             if response.status_code == 200:
+            #                 st.success(f"✅ Connected: {response.text}")
+            #             else:
+            #                 st.error(f"❌ Error {response.status_code}: {response.text}")
+            #         except Exception as e:
+            #             st.error(f"❌ Connection Failed: {str(e)}")
+            ### This code is commented. Can be removed later - End
+
         elif st.session_state.api_provider != "Mock":
             st.session_state.api_key = st.text_input(f"Enter {st.session_state.api_provider} API Key", type="password", key="api_key_input")
             
