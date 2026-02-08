@@ -388,6 +388,160 @@
                         "num_questions": 5
                     },
                     "output": "**Multiple\u2011Choice Questions \u2013 Gravity**\n\n1. **Which equation best describes the gravitational force between two point masses?**  \n   a) \\(F = ma\\)  \n   b) \\(F = G\\frac{m_1m_2}{r^2}\\)\u2003*(Correct)*  \n   c) \\(E = mc^2\\)  \n   d) \\(F = \\frac{1}{2}mv^2\\)\n\n2. **What is the approximate value of the acceleration due to gravity at the Earth\u2019s surface?**  \n   a) \\(1.62 \\; \\text{m/s}^2\\)  \n   b) \\(3.71 \\; \\text{m/s}^2\\)  \n   c) **\\(9.81 \\; \\text{m/s}^2\\)**  \n   d) \\(29.8 \\; \\text{m/s}^2\\)\n\n3. **According to General Relativity, gravity is best described as:**\n   a) An electromagnetic force  \n   b) A quantum mechanical effect  \n   c) **The curvature of spacetime caused by mass-energy**  \n   d) A new fundamental particle\n\n4. **Which of the following is true about gravitational waves?**  \n   a) They travel faster than light  \n   b) They were first detected in 2015 by LIGO  \n   c) **They propagate at the speed of light**  \n   d) They can only be produced by rotating neutron stars\n\n5. **The magnitude of the gravitational force between two masses depends on:**\n   a) Only the masses of the objects  \n   b) Only the distance between them  \n   c) **Both the masses and the square of the distance between them**  \n   d) The shape of the objects\n\n---\n\n**Answer Key**  \n1. b)  \n2. c)  \n3. c)  \n4. c)  \n5. c)"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 3
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 3
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: No secrets found. Valid paths for a secrets.toml file or secret directories are: /Users/sidharth/.streamlit/secrets.toml, /Users/sidharth/Downloads/Work/Freelance/Projects/Ed-Tech/Codebase/EdTechFolio-Streamlit/.streamlit/secrets.toml"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u26a0\ufe0f Model 'gpt-oss-20b' not found locally. Please run `ollama pull gpt-oss-20b` in your terminal."
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "**Multiple\u2011Choice Questions on Gravity**\n\n1. **Which law describes the gravitational attraction between two masses?**  \n   A. Law of Universal Gravitation  \n   B. Bernoulli\u2019s Principle  \n   C. Hooke\u2019s Law  \n   D. Pascal\u2019s Law  \n   **Answer:** A  \n\n2. **What is the approximate value of the universal gravitational constant \\(G\\)?**  \n   A. \\(6.67 \\times 10^{-11}\\ \\text{N\u00b7m}^2/\\text{kg}^2\\)  \n   B. \\(9.81\\ \\text{m/s}^2\\)  \n   C. \\(3.00 \\times 10^8\\ \\text{m/s}\\)  \n   D. \\(1.62\\ \\text{m/s}^2\\)  \n   **Answer:** A  \n\n3. **In Einstein\u2019s theory of General Relativity, gravity is best described as:**  \n   A. A force transmitted by gravitons  \n   B. A curvature of spacetime caused by mass/energy  \n   C. An electromagnetic interaction  \n   D. An effect of dark matter only  \n   **Answer:** B  \n\n4. **Which of the following phenomena is a direct result of gravitational waves?**  \n   A. Light bending around stars  \n   B. The perihelion precession of Mercury  \n   C. The stretching and squeezing of spacetime detected by LIGO  \n   D. The orbital decay of binary pulsars  \n   **Answer:** C  \n\n5. **A \u201cblack hole\u201d has an escape velocity that is:**  \n   A. Less than the speed of light  \n   B. Exactly the speed of light  \n   C. Greater than the speed of light  \n   D. Independent of mass  \n   **Answer:** C  "
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u26a0\ufe0f Model 'deepseek-v3' not found locally. Please run `ollama pull deepseek-v3` in your terminal."
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: Error code: 400 - {'error': {'message': 'The model `mistral-saba-24b` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u26a0\ufe0f Model 'gemma-3-27b-it' not found locally. Please run `ollama pull gemma-3-27b-it` in your terminal."
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: Error code: 400 - {'error': {'message': 'The model `deepseek-r1-distill-llama-70b` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "\u274c Error: Error code: 400 - {'error': {'message': 'The model `llama-3.2-3b-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "**Multiple\u2011choice questions on gravity**\n\n1. **Which law best describes the force between two point masses?**  \n   A) Hooke\u2019s law  \n   B) Coulomb\u2019s law  \n   C) Newton\u2019s law of universal gravitation  \n   D) Archimedes\u2019 principle  \n\n   *Answer: C*\n\n2. **What is the value of the acceleration due to Earth\u2019s gravity at the surface?**  \n   A) 9.8\u202fm/s\u00b2  \n   B) 9.8\u202fkm/s\u00b2  \n   C) 9.8\u202fmm/s\u00b2  \n   D) 9.8\u202fg/cm\u00b2  \n\n   *Answer: A*\n\n3. **Which of the following best defines gravitational potential energy (U) for an object of mass m at height h above Earth\u2019s surface (ignoring air resistance)?**  \n   A) \\( U = \\frac{1}{2} m v^2 \\)  \n   B) \\( U = m g h \\)  \n   C) \\( U = \\frac{G M m}{r} \\)  \n   D) \\( U = m g^2 h \\)  \n\n   *Answer: B*\n\n4. **In Einstein\u2019s theory of general relativity, gravity is described as:**  \n   A) A force mediated by graviton particles  \n   B) The curvature of spacetime caused by mass and energy  \n   C) An electromagnetic interaction between masses  \n   D) A quantum mechanical effect with no classical counterpart  \n\n   *Answer: B*\n\n5. **Which of the following is a characteristic feature of a black hole?**  \n   A) It emits light in a perfect black spectrum  \n   B) It has a surface temperature of 0\u202fK  \n   C) Its escape velocity exceeds the speed of light  \n   D) It can only form from the collapse of neutron stars  \n\n   *Answer: C*"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "**1. Which equation correctly represents Newton\u2019s law of universal gravitation?**  \nA) \\(F = G\\frac{m_1m_2}{r^2}\\)  \nB) \\(F = G\\frac{m_1+m_2}{r^2}\\)  \nC) \\(F = G\\frac{m_1m_2}{r}\\)  \nD) \\(F = G\\frac{m_1m_2}{r^3}\\)  \n**Answer:** A  \n\n---\n\n**2. What is the gravitational acceleration (g) at the Earth\u2019s surface?**  \nA) \\(9.81\\,\\text{m/s}^2\\)  \nB) \\(9.81\\,\\text{km/s}^2\\)  \nC) \\(1.62\\,\\text{m/s}^2\\)  \nD) \\(3.71\\,\\text{m/s}^2\\)  \n**Answer:** A  \n\n---\n\n**3. According to Einstein\u2019s equivalence principle, which of the following situations would an observer inside a closed box experience as a gravitational field?**  \nA) The box is moving at a constant velocity.  \nB) The box is accelerating upward at \\(g\\).  \nC) The box is orbiting the Earth.  \nD) The box is in free fall toward a massive body.  \n**Answer:** B  \n\n---\n\n**4. Which of the following correctly describes a gravitational wave?**  \nA) A ripple in the electromagnetic field produced by accelerating charges.  \nB) A propagating disturbance in the curvature of spacetime.  \nC) A vibration of the Earth\u2019s crust due to seismic activity.  \nD) A variation in the gravitational constant over time.  \n**Answer:** B  \n\n---\n\n**5. What is the escape velocity from the surface of the Moon?**  \nA) \\(1.62\\,\\text{km/s}\\)  \nB) \\(3.24\\,\\text{km/s}\\)  \nC) \\(11.2\\,\\text{km/s}\\)  \nD) \\(7.90\\,\\text{km/s}\\)  \n**Answer:** B (\u2248\u202f3.24\u202fkm\u202fs\u207b\u00b9)"
+                },
+                {
+                    "tool": "Text Question",
+                    "input": "proof read and generate: why is the sky blue? what's the rayleigh scattering phenomenon?...",
+                    "output": "Here are a variety of **text\u2011dependent** questions that directly reference the exact wording and content of the provided passage.  \nFeel free to use them for comprehension checks, editing exercises, or discussion prompts.\n\n---\n\n### 1. Surface\u2011Level Comprehension\n\n| # | Question | Rationale |\n|---|----------|-----------|\n| 1 | What does the phrase \u201cproof read and generate\u201d ask the reader to do? | Tests recognition of the instruction. |\n| 2 | List the two scientific questions posed after the instruction. | Checks that the student can identify the content of the questions. |\n| 3 | Which natural phenomenon is explicitly mentioned in the text? | Checks awareness of the key term \u201cRayleigh scattering.\u201d |\n| 4 | How many words are there in the original passage? | Encourages counting and attention to detail. |\n\n---\n\n### 2. Grammar & Style\n\n| # | Question | Rationale |\n|---|----------|-----------|\n| 5 | Identify any punctuation errors in the passage. | Focuses on comma/period placement. |\n| 6 | Suggest a single-word correction for the phrase \u201cproof read\u201d as used here. | Encourages knowledge of compound verbs. |\n| 7 | Rewrite the passage with correct capitalization and punctuation. | Allows students to apply editing skills. |\n| 8 | Which part of the passage could be split into two separate sentences for clarity? | Promotes syntactic analysis. |\n\n---\n\n### 3. Content\u2011Specific (Scientific)\n\n| # | Question | Rationale |\n|---|----------|-----------|\n| 9 | According to the passage, why is the sky blue? | Tests understanding of the scientific claim. |\n|10 | What does the term \u201cRayleigh scattering phenomenon\u201d refer to? | Checks recall of the specific scientific concept. |\n|11 | What are the two separate questions asked in the passage? | Confirms students can list both questions. |\n|12 | How many distinct questions are posed in the passage? | Simple counting, reinforces reading accuracy. |\n\n---\n\n### 4. Higher\u2011Order Thinking (Text\u2011Based)\n\n| # | Question | Rationale |\n|---|----------|-----------|\n| 13 | Why might the writer have chosen to ask \u201cwhy is the sky blue?\u201d before asking about Rayleigh scattering? | Encourages inference about the text\u2019s organization. |\n| 14 | In what way does the structure of the passage (instruction + questions) influence its purpose? | Prompts analysis of text structure. |\n| 15 | If you were to add a third question to this passage, what might it be, and why? | Stimulates creative extension while staying text\u2011dependent. |\n\n---\n\nFeel free to mix and match these questions depending on the depth of understanding you wish to assess."
+                },
+                {
+                    "tool": "Text Rewriter",
+                    "input": {
+                        "text": "proof read and generate: why is the sky blue? what's the rayleigh scattering phenomenon?...",
+                        "criteria": "professional"
+                    },
+                    "output": "Please proofread and prepare the following:  \n\n1. Why is the sky blue?  \n2. What is the Rayleigh scattering phenomenon?"
+                },
+                {
+                    "tool": "Proof Read",
+                    "input": "proof read and generate: why is the sky blue? what's the rayleigh scattering phenomenon?.....",
+                    "output": "**Corrected text**\n\nWhy is the sky blue? What is the Rayleigh scattering phenomenon?"
+                },
+                {
+                    "tool": "Lesson Plan",
+                    "input": {
+                        "topic": "why is the sky blue? what's the rayleigh scattering phenomenon?..",
+                        "duration": 45
+                    },
+                    "output": "# Lesson Plan  \n**Topic:** *Why is the Sky Blue? \u2013 Rayleigh Scattering*  \n**Grade Level:** 9\u201112 (High School Physics)  \n**Duration:** 45\u202fminutes  \n**Materials Needed**\n\n| Item | Purpose |\n|------|---------|\n| Projector / Smartboard | Display images, animations, video |\n| PowerPoint/Google Slides | Structured presentation |\n| Whiteboard & markers | Quick notes, diagram sketching |\n| Small LED light (or flashlight) | Light source for demonstration |\n| Clear plastic container or glass jar (\u2248\u202f20\u202fcm tall) | \u201cSky in a bottle\u201d demo |\n| Water | Fill the jar, create mist |\n| Fine\u2011mist spray bottle (water + a few drops of dish\u2011soap) | Generates fog for scattering |\n| Fan (optional) | Helps keep mist dispersed |\n| Small prism & white paper | Optional \u201cdispersion\u201d side\u2011activity |\n| Handout (concept map or worksheet) | Summarize key terms, quick checks |\n| Exit\u2011ticket slips | Quick formative assessment |\n\n---\n\n## Learning Objectives\n\nBy the end of the lesson, students will be able to:\n\n1. **Explain** why the sky appears blue to the human eye.  \n2. **Define** Rayleigh scattering and describe how it depends on wavelength.  \n3. **Predict** why the sky changes color at sunrise/sunset.  \n4. **Describe** how a simple laboratory demonstration can model Rayleigh scattering.  \n\n(Students may also be assessed on their ability to use the formula *\u03c3 \u221d 1/\u03bb\u2074* and to differentiate Rayleigh scattering from Mie scattering.)\n\n---\n\n## Lesson Flow (45\u202fmin)\n\n| Time | Activity | Teacher Actions | Student Actions |\n|------|----------|-----------------|-----------------|\n| **0\u20115\u202fmin** | **Hook / Warm\u2011up** | \u2022 Ask: \u201cWhy does the sky look blue? What would happen if the sky were not blue?\u201d<br>\u2022 Let students write 1\u2011sentence answer in a shared Google Doc. | \u2022 Write and share responses. |\n| **5\u201110\u202fmin** | **Light Basics** | \u2022 Quick recap: Sunlight \u2248 white light, composed of all colors (visible spectrum).<br>\u2022 Show a rainbow or prism video. | \u2022 Observe and note how colors separate. |\n| **10\u201120\u202fmin** | **Direct Instruction: Rayleigh Scattering** | \u2022 Use slides: definition, diagram of photon\u2011particle interaction, wavelength vs. scattering cross\u2011section (\u03c3 \u221d 1/\u03bb\u2074).<br>\u2022 Explain why shorter wavelengths (blue/violet) scatter more. | \u2022 Take notes, ask questions. |\n| **20\u201130\u202fmin** | **Demonstration: \u201cSky in a Bottle\u201d** | 1. Fill jar \u00be full with water.<br>2. Place LED light on the side. <br>3. Spray fine mist into the water; fan if available.<br>4. Observe the blue\u2011ish glow in the jar. <br>\u2022 Explain: light scatters off tiny water droplets\u2014shorter wavelengths dominate. | \u2022 Watch, point, discuss. |\n| **30\u201135\u202fmin** | **Sunrise/Sunset Discussion** | \u2022 Pose: \u201cWhy do we see red or orange at dawn/dusk?\u201d<br>\u2022 Guide through reasoning: longer path through atmosphere \u2192 more scattering of blue \u2192 red light reaches us. | \u2022 Contribute ideas, note key points. |\n| **35\u201140\u202fmin** | **Optional Extension (Mie Scattering)** | \u2022 Briefly show that larger particles (dust, water droplets) scatter all wavelengths similarly \u2192 white/gray clouds. | \u2022 Compare with Rayleigh case. |\n| **40\u201143\u202fmin** | **Concept Check** | \u2022 Hand out quick 3\u2011question worksheet: (1) Explain Rayleigh scattering; (2) Predict sky color at noon vs. sunset; (3) What would happen if atmosphere had larger particles? | \u2022 Complete individually. |\n| **43\u201145\u202fmin** | **Exit Ticket & Wrap\u2011up** | \u2022 Collect worksheets.<br>\u2022 Ask students to write one sentence: \u201cWhat is Rayleigh scattering and why does it make the sky blue?\u201d | \u2022 Submit ticket; reflect on learning. |\n\n---\n\n## Assessment\n\n| Type | Tool | Timing |\n|------|------|--------|\n| **Formative** | Observation, class discussion, worksheet | Throughout |\n| **Summative** | Exit ticket (written response) | 45\u202fmin end |\n| **Optional** | Short quiz in next class or online (5 min) | 1\u20112 days after |\n\n**Rubric (5\u2011point scale)**  \n- **5**: Correct definition; explains wavelength dependency; clearly describes sky\u2011blue and sunrise colors.  \n- **3**: Most points correct but missing minor detail (e.g., direction of scattering).  \n- **1**: Incorrect or incomplete understanding.  \n\n---\n\n## Differentiation\n\n| Need | Strategy |\n|------|----------|\n| **English learners** | Provide key vocabulary list in both English and students\u2019 first languages. Use visual aids. |\n| **Students needing extra support** | Pair with a peer; use graphic organizers to map \u201clight \u2192 wavelength \u2192 scattering \u2192 color.\u201d |\n| **Advanced learners** | Encourage deeper analysis of the Rayleigh scattering formula; ask them to compute relative scattering for blue vs. red wavelengths. Provide optional reading on atmospheric optics (e.g., the \u201cBiosphere\u201d chapter in *Optics*). |\n\n---\n\n## Extensions & Enrichment\n\n1. **Laboratory:** Use a laser pointer and a fine mist (fog machine) to visualize scattering lines in real time.  \n2. **Computer simulation:** Explore *PhET Interactive Simulations \u2013 \u201cLight and Color\u201d* or *Wolfram Demonstrations Project: Rayleigh Scattering*.  \n3. **Cross\u2011disciplinary:** Discuss how Rayleigh scattering affects *remote sensing*, *astronomy* (seeing stars through atmosphere), and *environmental science* (air pollution).  \n4. **Art Integration:** Have students paint \u201cblue sky\u201d using a mix of blue and violet paint, noting how mixing affects the hue.  \n\n---\n\n## Resources\n\n- **Videos**  \n  - \u201cRayleigh Scattering\u201d \u2013 PBS LearningMedia  \n  - \u201cWhy is the Sky Blue?\u201d \u2013 SciShow  \n\n- **Slides**  \n  - Pre\u2011made PowerPoint deck (attached) or Google Slides template.  \n\n- **Handouts**  \n  - Concept map of light, color, scattering.  \n  - Worksheet with diagrams for students to label.  \n\n- **Reading**  \n  - \u201cAtmospheric Optics\u201d \u2013 National Oceanic and Atmospheric Administration (NOAA).  \n\n---\n\n### Notes for the Teacher\n\n- **Start with curiosity.** Students often think of the sky as simply blue; let them articulate their own ideas first.  \n- **Emphasize the *inverse fourth power* relationship**: *\u03c3 \u221d 1/\u03bb\u2074*. A quick mental math exercise can illustrate why blue (\u2248450\u202fnm) scatters \u224810\u00d7 more than red (\u2248650\u202fnm).  \n- **Use the jar demo as a visual anchor** \u2013 it\u2019s tangible, short, and repeats the core idea of scattering.  \n- **Encourage students to think of everyday examples**: why cars appear red at dusk, why the Milky Way looks fuzzy, etc.  \n\n---\n\n**Good luck teaching the wonders of the sky!**"
+                },
+                {
+                    "tool": "MCQ Generator",
+                    "input": {
+                        "context": "gravity...",
+                        "num_questions": 5
+                    },
+                    "output": "**Multiple\u2011Choice Questions on Gravity**\n\n1. **Which of the following best describes the gravitational force between two masses?**  \n   A. It increases with distance and decreases with mass.  \n   B. It is directly proportional to the product of the masses and inversely proportional to the square of the distance between them.  \n   C. It is independent of the distance between the masses.  \n   D. It only exists between charged particles.  \n   **Correct answer:** B  \n\n2. **According to Newton\u2019s law of universal gravitation, what happens to the force of gravity if the distance between two objects is doubled while their masses remain constant?**  \n   A. The force is halved.  \n   B. The force is quartered.  \n   C. The force is doubled.  \n   D. The force stays the same.  \n   **Correct answer:** B  \n\n3. **Which statement best reflects Einstein\u2019s theory of general relativity regarding gravity?**  \n   A. Gravity is a force transmitted instantaneously across space.  \n   B. Gravity is caused by the acceleration of a reference frame.  \n   C. Gravity is the curvature of spacetime caused by mass and energy.  \n   D. Gravity only affects objects with electric charge.  \n   **Correct answer:** C  \n\n4. **If an astronaut weighs 70\u202fkg on Earth, how much would they weigh approximately on the Moon, where the surface gravity is about 1/6 of Earth's?**  \n   A. 70\u202fkg  \n   B. 11.7\u202fkg  \n   C. 35\u202fkg  \n   D. 14\u202fkg  \n   **Correct answer:** B  \n\n5. **What observational evidence first confirmed the existence of gravitational waves?**  \n   A. The precession of Mercury\u2019s orbit  \n   B. The bending of starlight by the Sun  \n   C. The indirect energy loss in the Hulse\u2013Taylor binary pulsar system  \n   D. The uniform expansion of the universe  \n   **Correct answer:** C  "
                 }
             ]
         }

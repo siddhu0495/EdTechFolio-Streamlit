@@ -215,3 +215,9 @@ __marimo__/
 # Python
 .venv/
 venv/
+
+# Secrets
+secret_old_copy.toml
+secrets_outside_streamlit_folder.toml
+
+
