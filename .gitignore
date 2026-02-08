@@ -216,5 +216,8 @@ __marimo__/
 .venv/
 venv/
 
-secret old copy.toml
-secrets outside .streamlit folder.toml
+# Secrets
+secret_old_copy.toml
+secrets_outside_streamlit_folder.toml
+
+
